@@ -69,10 +69,9 @@ public class SerializationHelper {
     }
 
     StringSerializedObjectOutputStream out = new StringSerializedObjectOutputStream();
-    ObjectOutputStream oos = new ObjectOutputStream(out);
-    writeStringKey(key, oos);
-    oos.close();
-
+    try(ObjectOutputStream oos = new ObjectOutputStream(out)) {
+          writeStringKey(key, oos);
+    }
     return out.toString();
   }
 

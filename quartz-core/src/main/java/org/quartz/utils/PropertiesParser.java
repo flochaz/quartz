@@ -222,7 +222,7 @@ public class PropertiesParser {
 
         try {
             return Integer.parseInt(val);
-        } catch (NumberFormatException nfe) {
+        } catch (NumberFormatException nfe) { //TODO
             throw new NumberFormatException(" '" + val + "'");
         }
     }

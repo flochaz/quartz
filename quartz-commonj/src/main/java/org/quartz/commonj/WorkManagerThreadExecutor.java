@@ -53,6 +53,7 @@ public class WorkManagerThreadExecutor implements ThreadExecutor {
 
     public void initialize() {
         try {
+            // TODO: Consider closing the resource returned by the InitialContext constructor in a try-finally block.
             this.workManager = (WorkManager) new InitialContext().lookup(workManagerName);
         } catch (NamingException e) {
             throw new IllegalStateException("Could not locate WorkManager: " + e.getMessage(), e);

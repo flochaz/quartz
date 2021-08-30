@@ -68,11 +68,12 @@ public class SerializationHelper {
       return stringKey;
     }
 
-    StringSerializedObjectOutputStream out = new StringSerializedObjectOutputStream();
-    try(ObjectOutputStream oos = new ObjectOutputStream(out)) {
-          writeStringKey(key, oos);
+    try(StringSerializedObjectOutputStream out = new StringSerializedObjectOutputStream()) {
+        try(ObjectOutputStream oos = new ObjectOutputStream(out)) {
+        writeStringKey(key, oos);
+      }
+      return out.toString();
     }
-    return out.toString();
   }
 
   private static void writeStringKey(final Object key, final ObjectOutputStream oos) throws IOException {
